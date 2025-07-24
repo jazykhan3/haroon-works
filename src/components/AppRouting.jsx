@@ -5,6 +5,7 @@ import { OnboardingProvider, useOnboardingStatus } from '../features/onboarding/
 
 // Layouts
 import OnboardingLayout from '../layouts/OnboardingLayout';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 // Pages/Components for Routing
 import HomePage from '../pages/HomePage';
@@ -12,6 +13,9 @@ import NotFoundPage from '../pages/NotFoundPage';
 
 // Onboarding Feature Pages
 import OnboardingPage from '../features/onboarding/pages/OnboardingPage';
+
+// Dashboard Feature Pages
+import OverviewPage from '../features/dashboard/pages/OverView';
 
 const AppRouter = () => {
   return (
@@ -33,6 +37,12 @@ const AppRouter = () => {
               </OnboardingLayout>
             }
           />
+
+          {/* DASHBOARD ROUTES */}
+          <Route path="/dashboard/*" element={<DashboardLayout />}>
+            <Route index element={<OverviewPage />} />
+            {/* Add more dashboard sub-routes here */}
+          </Route>
 
           {/* Catch-all 404 Not Found Page */}
           <Route path="*" element={<NotFoundPage />} />

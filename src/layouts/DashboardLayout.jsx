@@ -1,6 +1,5 @@
 // src/layouts/DashboardLayout.jsx
 import { Outlet, Link } from 'react-router-dom';
-import { useAuth } from '../features/auth/AuthContext'; // To access logout
 import React, { useState } from 'react';
 import {
   UploadOutlined,
@@ -15,8 +14,6 @@ const { Sider, Content } = Layout;
 
 
 const DashboardLayout = () => {
-  const { logout } = useAuth(); // Assume you have a logout function in your AuthContext
-
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
