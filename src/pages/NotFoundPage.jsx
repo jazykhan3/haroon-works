@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         </p>
         <a 
           href="/" 
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+          className="rounded-lg disabled:bg-transparent disabled:border-[#f57900] border-[#f57900] disabled:text-black-800 bg-orange-gradient hover:bg-orange-gradient-hover text-white text-base font-bold leading-4 py-4 px-6 w-fit h-auto"
         >
           Go Home
         </a>
