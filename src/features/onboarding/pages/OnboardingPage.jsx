@@ -1,7 +1,7 @@
 // src/features/onboarding/pages/OnboardingPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { Spin, Alert } from 'antd'; // Import AntD components for loading/error
+import { Spin, Alert, Image } from 'antd'; // Import AntD components for loading/error
 
 // Import individual step components
 import Step1PhoneNumber from '../components/Step1number';
@@ -13,6 +13,8 @@ import Step5MonthDropdown from '../components/Step5month';
 import OnboardingNavigation from '../components/OnboardingNavigation';
 import { useOnboardingProgress } from '../hooks/useOnboardingProgress';
 import { useOnboardingStatus } from '../onboardingState';
+import bgImage from '../../../assets/images/front-screen-bg.svg'
+import Logo from '../../../assets/icons/Logo.svg'
 
 const OnboardingPage = () => {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const OnboardingPage = () => {
   const handleStepValidation = (isValid) => {
     setIsCurrentStepValid(isValid);
   };
-
+  console.log('onboardingData', onboardingData)
   // Re-evaluate validity when step changes or data changes
   useEffect(() => {
     // This is a simplified check. In a real app, you might have more complex validation.
@@ -36,7 +38,7 @@ const OnboardingPage = () => {
         setIsCurrentStepValid(/^\d{10,15}$/.test(onboardingData.phoneNumber));
         break;
       case 2:
-        setIsCurrentStepValid(/^\d{6}$/.test(onboardingData.otp));
+        setIsCurrentStepValid(onboardingData.otp);
         break;
       case 3:
         setIsCurrentStepValid(!!onboardingData.choiceRadio);
@@ -94,11 +96,13 @@ const OnboardingPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
-        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
-          Onboarding - Step {currentStep} of 5
-        </h2>
+    <div className="bg-white flex md:flex-row flex-col-reverse md:gap-16 gap-0 w-full md:h-screen max-w-screen-xl mx-auto items-center px-4">
+      <div className="w-full max-w-lg left flex flex-col md:pb-0 pb-8">
+        <Image
+          preview={false}
+          className='max-w-[120px] h-[45px] object-contain mb-7'
+          src={Logo}
+        />
         {error && (
           <Alert
             message="Error"
@@ -118,9 +122,16 @@ const OnboardingPage = () => {
             onBack={goToPreviousStep}
             onNext={handleNext}
             isLastStep={isLastStep}
-            isNextDisabled={!isCurrentStepValid || isLoading} // Disable Next button if invalid or loading
+            isNextDisabled={!isCurrentStepValid || isLoading} // Disable Next button if invalid or loadinge 
           />
         </Spin>
+      </div>
+      <div className="right grow md:pt-0 pt-8 md:mb-0 mb-10">
+        <Image
+          preview={false}
+          className='w-full md:max-w-2xl max-w-sm h-auto'
+          src={bgImage}
+        />
       </div>
     </div>
   );

@@ -1,49 +1,51 @@
 // src/layouts/DashboardLayout.jsx
-import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthContext'; // To access logout
+import React, { useState } from 'react';
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
+import { Button, Layout, Menu, theme } from 'antd';
+import MainHeader from '../features/dashboard/components/Header';
+import SideBarMenu from '../features/dashboard/components/SideBarMenu';
+import style from './style.module.scss'
+const { Sider, Content } = Layout;
+
 
 const DashboardLayout = () => {
   const { logout } = useAuth(); // Assume you have a logout function in your AuthContext
 
-  return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white p-6">
-        <h2 className="text-2xl font-bold mb-8">My Dashboard</h2>
-        <nav>
-          <ul>
-            <li className="mb-4">
-              <Link to="/dashboard" className="text-lg hover:text-indigo-300">Overview</Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/dashboard/reports" className="text-lg hover:text-indigo-300">Reports</Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/dashboard/users" className="text-lg hover:text-indigo-300">Users</Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/dashboard/settings" className="text-lg hover:text-indigo-300">Settings</Link>
-            </li>
-          </ul>
-        </nav>
-        <button
-          onClick={logout}
-          className="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-        >
-          Logout
-        </button>
-      </aside>
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
-      {/* Main Content Area */}
-      <main className="flex-1 p-8">
-        <header className="bg-white shadow p-6 rounded-lg mb-8">
-          <h1 className="text-3xl font-semibold text-gray-900">Welcome to your Dashboard!</h1>
-        </header>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <Outlet /> {/* Renders nested dashboard routes here */}
-        </div>
-      </main>
+  return (
+    <div className={style.mainDashboardLayoutbox}>
+      <Layout>
+        <MainHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Layout className='bg-[#F7F7F9] pt-6'>
+
+          <Sider className={style.mainDashboardLayoutbox} trigger={null} collapsible collapsed={collapsed}
+            onCollapse={(value) => setCollapsed(value)}
+            breakpoint="lg"
+            collapsedWidth={80} // Set to 0 for full hide on small screens
+            onBreakpoint={(broken) => {
+              setCollapsed(broken); // Auto collapse on breakpoint
+            }}
+            className="!bg-transparent"
+            width={235}
+          >
+            <div className="demo-logo-vertical" />
+            <SideBarMenu />
+          </Sider>
+          <Content className={style.mainContentcontainer}>
+            <Outlet />
+          </Content>
+        </Layout>
+      </Layout>
     </div>
   );
 };

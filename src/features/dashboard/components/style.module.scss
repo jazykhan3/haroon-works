@@ -1,0 +1,38 @@
+.sideMenu {
+  min-height: calc(100vh - 84px);
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 20px;
+  width: 100%;
+  :global(.ant-menu) {
+    background-color: transparent;
+    box-shadow: unset;
+    border-inline-end: 0px solid transparent !important;
+    :global(.ant-menu-item) {
+      padding: 8px 16px !important;
+      background: transparent;
+      border-radius: 8px;
+      margin: 0 0 6px 0;
+      :global(.ant-menu-title-content) {
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        color: #12131ada;
+      }
+      &:global(.ant-menu-item-active),
+      &:global(.ant-menu-item-selected) {
+        background-color: #fff !important;
+        color: #12131a;
+        :global(.ant-menu-item-icon) {
+          svg {
+            fill: #f6581c;
+          }
+        }
+        :global(.ant-menu-title-content) {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

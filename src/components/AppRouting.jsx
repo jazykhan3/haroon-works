@@ -20,7 +20,7 @@ import LoginPage from '../features/auth/pages/LoginPage';
 import OnboardingPage from '../features/onboarding/pages/OnboardingPage';
 
 // Dashboard Feature Pages
-// import OverviewPage from '../features/dashboard/pages/';
+import OverviewPage from '../features/dashboard/pages/OverView';
 // import ReportsPage from '../features/dashboard/pages/ReportsPage';
 // import SettingsPage from '../features/dashboard/pages/SettingsPage';
 // import UsersPage from '../features/dashboard/pages/UsersPage';
@@ -57,9 +57,9 @@ const ProtectedRoute = ({ children }) => {
   }
 
   // Case 3: Authenticated and onboarding is complete (or not required)
-  // If the user is on the onboarding page, but onboarding is COMPLETE, redirect to dashboard.
+  // If the user is on the onboarding page, but onboarding is COMPLETE, redirect to home.
   if (!requiresOnboarding && window.location.pathname === '/onboarding') {
-      return <Navigate to="/dashboard" replace />;
+      return <Navigate to="/home" replace />;
   }
 
   return <>{children}</>;
@@ -71,8 +71,8 @@ const AppRouter = () => {
       <AuthProvider>
         <OnboardingProvider>
           <Routes>
-            {/* Default Route - Redirect to Onboarding */}
-            <Route path="/" element={<Navigate to="/onboarding" replace />} />
+            {/* Default Route - Redirect to Home */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
             
             {/* Public Routes */}
             <Route path="/home" element={<HomePage />} /> {/* Your landing page */}
@@ -97,8 +97,8 @@ const AppRouter = () => {
             {/* PROTECTED DASHBOARD ROUTES */}
             {/* All routes under /dashboard require authentication and completed onboarding */}
             <Route path="/dashboard/*" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-              {/* <Route index element={<OverviewPage />} /> 
-              <Route path="reports" element={<ReportsPage />} /> 
+              <Route index element={<OverviewPage />} /> 
+              {/* <Route path="reports" element={<ReportsPage />} /> 
               <Route path="settings" element={<SettingsPage />} />
               <Route path="users" element={<UsersPage />} />  */}
               {/* Add more dashboard sub-routes here */}

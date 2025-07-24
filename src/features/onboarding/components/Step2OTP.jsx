@@ -1,50 +1,66 @@
-// src/features/onboarding/components/Step2OTP.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Form, Typography } from 'antd';
 import { useOnboardingStatus } from '../onboardingState';
+import { InputOTP } from 'antd-input-otp';
 
 const { Title, Paragraph } = Typography;
 
 const Step2OTP = ({ onValidate }) => {
   const { onboardingData, updateOnboardingData } = useOnboardingStatus();
   const [form] = Form.useForm();
+  const [otpValues, setOtpValues] = useState(onboardingData.otp || '');
 
-  const handleValuesChange = (_, allValues) => {
-    updateOnboardingData({ otp: allValues.otp });
-    form.validateFields(['otp'])
-      .then(() => onValidate(true))
-      .catch(() => onValidate(false));
+  const handleOtpChange = (value) => {
+    setOtpValues(value);
+    updateOnboardingData({ otp: value });
+
+    // Validate only when 6 digits are filled
+    onValidate(value.length === 6);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <Title level={3} className="text-center text-indigo-700">Enter OTP</Title>
-      <Paragraph className="text-center text-gray-600 mb-6">
+    <div className="">
+      <Title level={3} className="text-left text-3xl text-black font-medium mb-4">
+        Verify OTP
+      </Title>
+      <Paragraph className="text-sm text-left text-[#12131A]">
         Please enter the 6-digit numeric OTP sent to your phone.
       </Paragraph>
+
       <Form
         form={form}
         layout="vertical"
         initialValues={{ otp: onboardingData.otp }}
-        onValuesChange={handleValuesChange}
-        className="w-full max-w-sm"
+        className="w-full"
       >
         <Form.Item
           name="otp"
           label="6-Digit OTP"
           rules={[
-            { required: true, message: 'Please enter the OTP!' },
-            { pattern: /^\d{6}$/, message: 'OTP must be 6 numeric digits.' },
+            {
+              required: true,
+              message: 'Please enter the 6-digit OTP.',
+            },
+            {
+              pattern: /^\d{6}$/,
+              message: 'OTP must be exactly 6 digits.',
+            },
           ]}
         >
-          <Input placeholder="e.g., 123456" maxLength={6} className="w-full" />
+          <InputOTP
+            length={6}
+            value={otpValues}
+            onChange={handleOtpChange}
+            inputType="numeric"
+            inputClassName="text-[18px] font-medium text-[#12131A] border border-[#D8DAE5] 
+            hover:border-[#F57900] focus:border-[#F57900] hover:shadow-none focus-within:shadow-none 
+            focus-within:border-[#F57900] rounded-md text-center grow !max-w-none"
+            wrapperClassName="gap-2 flex"
+          />
         </Form.Item>
-        <div className="text-center mt-4">
-          <a href="#" className="text-indigo-600 hover:underline">Resend OTP</a>
-        </div>
       </Form>
     </div>
   );
 };
 
-export default Step2OTP; 
+export default Step2OTP;

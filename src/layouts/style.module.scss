@@ -1,0 +1,15 @@
+.mainDashboardLayoutbox {
+  .mainContentcontainer {
+    // background-color: aqua;
+    // min-height: calc(100vh - 60px);
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 20px;
+    :global(.ant-layout-sider-collapsed) {
+     :global(.ant-typography) {
+        display: none !important;
+      }
+    }
+  }
+}

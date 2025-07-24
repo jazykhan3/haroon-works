@@ -1,0 +1,37 @@
+.customRadios {
+  :global(.ant-radio-button-label) {
+    width: 100%;
+  }
+  :global(.ant-radio-button-wrapper) {
+    &:before {
+      display: none;
+    }
+  }
+}
+.customCheckbox {
+  :global(.ant-form-item-control-input-content) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+:global(.ant-form-item-control-input-content) {
+  .customSelect {
+    text-align: left;
+    min-height: auto;
+    height: auto;
+    :global(.ant-select-selector) {
+      padding: 12px 20px;
+      border: 1px solid #d8dae5;
+    }
+    &:global(.ant-select-focused),
+    &:hover,
+    &:focus {
+      :global(.ant-select-selector) {
+        border: 1px solid #f57900 !important;
+        outline: unset;
+        box-shadow: unset;
+      }
+    }
+  }
+}

@@ -1,72 +1,74 @@
-// src/features/onboarding/components/Step4group.jsx
-import React from 'react';
-import { Checkbox, Form, Typography, Space } from 'antd';
-import { useOnboardingStatus } from '../onboardingState';
+import React, { useEffect } from 'react';
+import { Form, Typography } from 'antd';
+import { FileTextOutlined, CheckCircleFilled } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
 const Step4group = ({ onValidate }) => {
-  const { onboardingData, updateOnboardingData } = useOnboardingStatus();
   const [form] = Form.useForm();
 
-  const initialValues = {
-    choiceCheckbox: [
-      onboardingData.choiceCheckbox1 ? 'checkbox1' : '',
-      onboardingData.choiceCheckbox2 ? 'checkbox2' : '',
-    ].filter(Boolean), // Filter out empty strings
+  // Custom card component for checkbox options
+  const CustomCheckboxCard = ({ value, label }) => {
+    const selected = Form.useWatch('choiceCheckbox', form)?.includes(value);
+
+    const handleClick = () => {
+      const current = form.getFieldValue('choiceCheckbox') || [];
+      const updated = selected
+        ? current.filter((v) => v !== value)
+        : [...current, value];
+
+      form.setFieldsValue({ choiceCheckbox: updated });
+      onValidate(updated.length > 0); // ✅ Only check if any is selected
+    };
+
+    return (
+      <div
+        onClick={handleClick}
+        className={`flex items-center justify-between px-8 py-7 rounded-lg border transition-all cursor-pointer mb-4 ${
+          selected
+            ? 'border-[#f57900] bg-white shadow-sm'
+            : 'border-gray-200 bg-white hover:border-[#f57900]'
+        }`}
+      >
+        <div className="flex items-center gap-3 justify-between w-full">
+          <div className="flex items-center gap-3">
+            <FileTextOutlined className="text-xl text-[#f57900]" />
+            <span className="text-lg font-medium">{label}</span>
+          </div>
+          {selected && <CheckCircleFilled className="text-[#f57900] text-lg" />}
+        </div>
+      </div>
+    );
   };
 
-  const handleValuesChange = (_, allValues) => {
-    const isChecked1 = allValues.choiceCheckbox.includes('checkbox1');
-    const isChecked2 = allValues.choiceCheckbox.includes('checkbox2');
-    updateOnboardingData({
-      choiceCheckbox1: isChecked1,
-      choiceCheckbox2: isChecked2,
-    });
-    // For checkboxes, often validation means at least one is selected, or no specific requirement
-    // For this example, we'll say it's valid if at least one checkbox is selected.
-    onValidate(allValues.choiceCheckbox.length > 0);
-  };
-
-  React.useEffect(() => {
-    // Validate on mount
-    onValidate(initialValues.choiceCheckbox.length > 0);
-  }, [initialValues.choiceCheckbox.length, onValidate]);
+  // Validate on initial load
+  useEffect(() => {
+    const current = form.getFieldValue('choiceCheckbox') || [];
+    onValidate(current.length > 0);
+  }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <Title level={3} className="text-center text-indigo-700">Select Your Preferences</Title>
-      <Paragraph className="text-center text-gray-600 mb-6">
-        You can select one or both options below.
+    <div className="">
+      <Title level={3} className="text-left text-3xl text-black font-medium mb-4">Group?</Title>
+      <Paragraph className="text-sm text-left text-[#12131A] mb-6">
+        Choose the exam group that fits your goals and start setting your path to success.
       </Paragraph>
+
       <Form
         form={form}
         layout="vertical"
-        initialValues={initialValues}
-        onValuesChange={handleValuesChange}
-        className="w-full max-w-sm"
+        initialValues={{ choiceCheckbox: [] }}
+        className="w-full"
       >
-        <Form.Item
-          name="choiceCheckbox"
-          label="Your Choices"
-          rules={[{ required: true, message: 'Please select at least one option!', type: 'array', min: 1 }]}
-        >
-          <Checkbox.Group>
-            <Space direction="vertical" className="w-full">
-              <Checkbox value="checkbox1" className="border border-gray-200 p-3 rounded-md w-full hover:bg-gray-50 transition-colors duration-200">
-                <span className="font-medium text-lg">Preference A</span>
-                <p className="text-sm text-gray-500">Detailed description for preference A.</p>
-              </Checkbox>
-              <Checkbox value="checkbox2" className="border border-gray-200 p-3 rounded-md w-full hover:bg-gray-50 transition-colors duration-200">
-                <span className="font-medium text-lg">Preference B</span>
-                <p className="text-sm text-gray-500">Detailed description for preference B.</p>
-              </Checkbox>
-            </Space>
-          </Checkbox.Group>
+        <Form.Item name="choiceCheckbox">
+          <div className="flex flex-col">
+            <CustomCheckboxCard value="checkbox1" label="Group 1" />
+            <CustomCheckboxCard value="checkbox2" label="Group 2" />
+          </div>
         </Form.Item>
       </Form>
     </div>
   );
 };
 
-export default Step4group; 
+export default Step4group;

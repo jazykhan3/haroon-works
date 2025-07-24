@@ -2,6 +2,7 @@
 import React from 'react';
 import { Input, Form, Typography } from 'antd';
 import { useOnboardingStatus } from '../onboardingState';
+import { MobileOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
@@ -11,37 +12,43 @@ const Step1PhoneNumber = ({ onValidate }) => {
 
     const handleValuesChange = (_, allValues) => {
         updateOnboardingData({ phoneNumber: allValues.phoneNumber });
-        form.validateFields(['phoneNumber'])
-            .then(() => onValidate(true))
-            .catch(() => onValidate(false));
+        onValidate(true)
+        // form.validateFields(['phoneNumber'])
+        //     .then(() => onValidate(true))
+        //     .catch(() => onValidate(false));
     };
-
     return (
-        <div className="flex flex-col items-center justify-center p-4">
-            <Title level={3} className="text-center text-indigo-700">Enter Your Phone Number</Title>
-            <Paragraph className="text-center text-gray-600 mb-6">
-                We'll send a verification code to this number.
+        <div className="">
+            <Title level={3} className="text-left text-3xl text-black font-medium mb-4">Hi, Welcome Back!</Title>
+            <Paragraph className="text-sm text-left text-[#12131A]">
+                Login to you account to enjoy
             </Paragraph>
             <Form
                 form={form}
                 layout="vertical"
                 initialValues={{ phoneNumber: onboardingData.phoneNumber }}
                 onValuesChange={handleValuesChange}
-                className="w-full max-w-sm"
+                className="w-full mt-10"
             >
                 <Form.Item
                     name="phoneNumber"
                     label="Phone Number"
                     rules={[
-                        { required: true, message: 'Please enter your phone number!' },
-                        { pattern: /^\d{10,15}$/, message: 'Please enter a valid phone number (10-15 digits).' }, // Adjust regex for your region if needed
+                        { required: false, message: 'Please enter your phone number!' },
+                        {
+                            pattern: /^\+?\d{1,4}\d{7,12}$/,
+                            message: 'Format: +91 9876543210',
+                        },
                     ]}
                 >
-                    <Input placeholder="e.g., 03XXXXXXXXX" className="w-full" />
+                    <Input
+                        placeholder="e.g., +91 9876543210"
+                        prefix={<MobileOutlined className='w-[16px] h-[22px] object-contain' />}
+                        className="w-full stroke-[#D8DAE5] py-4 px-5 rounded-lg hover:border-[#F57900] focus:border-[#F57900] hover:shadow-none focus-within:shadow-none focus-within:border-[#F57900] "
+                    />
                 </Form.Item>
             </Form>
         </div>
     );
 };
-
 export default Step1PhoneNumber; 
