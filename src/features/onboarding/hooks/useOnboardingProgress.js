@@ -1,4 +1,3 @@
-// src/features/onboarding/hooks/useOnboardingProgress.js
 import { useState } from 'react';
 
 export const useOnboardingProgress = (totalSteps = 5) => {

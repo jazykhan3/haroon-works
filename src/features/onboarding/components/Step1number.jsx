@@ -1,5 +1,4 @@
-// src/features/onboarding/components/Step1PhoneNumber.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Input, Form, Typography } from 'antd';
 import { useOnboardingStatus } from '../onboardingState';
 import { MobileOutlined } from '@ant-design/icons';
@@ -10,28 +9,13 @@ const Step1PhoneNumber = ({ onValidate }) => {
     const { onboardingData, updateOnboardingData } = useOnboardingStatus();
     const [form] = Form.useForm();
 
-    const validatePhoneNumber = (phoneNumber) => {
-        // Check if phone number matches the pattern and has proper length
-        const phoneRegex = /^\+?\d{1,4}\d{7,12}$/;
-        const isValid = phoneNumber && phoneRegex.test(phoneNumber.replace(/\s/g, ''));
-        return isValid;
-    };
-
     const handleValuesChange = (_, allValues) => {
-        const phoneNumber = allValues.phoneNumber || '';
-        updateOnboardingData({ phoneNumber });
-        
-        // Validate the phone number and update the validation state
-        const isValid = validatePhoneNumber(phoneNumber);
-        onValidate(isValid);
+        updateOnboardingData({ phoneNumber: allValues.phoneNumber });
+        onValidate(true)
+        // form.validateFields(['phoneNumber'])
+        //     .then(() => onValidate(true))
+        //     .catch(() => onValidate(false));
     };
-
-    // Initial validation when component mounts
-    useEffect(() => {
-        const isValid = validatePhoneNumber(onboardingData.phoneNumber);
-        onValidate(isValid);
-    }, [onboardingData.phoneNumber, onValidate]);
-
     return (
         <div className="">
             <Title level={3} className="text-left text-3xl text-black font-medium mb-4">Hi, Welcome Back!</Title>
@@ -49,7 +33,7 @@ const Step1PhoneNumber = ({ onValidate }) => {
                     name="phoneNumber"
                     label="Phone Number"
                     rules={[
-                        { required: true, message: 'Please enter your phone number!' },
+                        { required: false, message: 'Please enter your phone number!' },
                         {
                             pattern: /^\+?\d{1,4}\d{7,12}$/,
                             message: 'Format: +91 9876543210',

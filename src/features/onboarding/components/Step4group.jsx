@@ -7,7 +7,6 @@ const { Title, Paragraph } = Typography;
 const Step4group = ({ onValidate }) => {
   const [form] = Form.useForm();
 
-  // Custom card component for checkbox options
   const CustomCheckboxCard = ({ value, label }) => {
     const selected = Form.useWatch('choiceCheckbox', form)?.includes(value);
 
@@ -18,7 +17,7 @@ const Step4group = ({ onValidate }) => {
         : [...current, value];
 
       form.setFieldsValue({ choiceCheckbox: updated });
-      onValidate(updated.length > 0); // ✅ Only check if any is selected
+      onValidate(updated.length > 0);
     };
 
     return (
@@ -41,7 +40,6 @@ const Step4group = ({ onValidate }) => {
     );
   };
 
-  // Validate on initial load
   useEffect(() => {
     const current = form.getFieldValue('choiceCheckbox') || [];
     onValidate(current.length > 0);

@@ -5,14 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/reset.css';
 import './assets/fonts/inter/fonts.css'
-
-// Ensure DOM is ready before mounting React
-const container = document.getElementById('root');
-if (!container) {
-  throw new Error('Failed to find the root element. Make sure you have a div with id="root" in your HTML.');
-}
-
-const root = ReactDOM.createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />

@@ -1,4 +1,3 @@
-// src/features/onboarding/onboardingState.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const defaultOnboardingData = {
@@ -14,12 +13,10 @@ const OnboardingContext = createContext(undefined);
 
 export const OnboardingProvider = ({ children }) => {
   const [onboardingData, setOnboardingData] = useState(defaultOnboardingData);
-  const [requiresOnboarding, setRequiresOnboarding] = useState(true); // Set to true initially for new users
-  const [isLoadingOnboardingStatus, setIsLoadingOnboardingStatus] = useState(true); // Initially true
+  const [requiresOnboarding, setRequiresOnboarding] = useState(true);
+  const [isLoadingOnboardingStatus, setIsLoadingOnboardingStatus] = useState(true); 
 
   useEffect(() => {
-    // In a real app, you'd fetch this from the backend based on user ID
-    // For now, simulate it with local storage
     const onboardedFlag = localStorage.getItem('onboardingComplete');
     if (onboardedFlag === 'true') {
       setRequiresOnboarding(false);
@@ -32,8 +29,8 @@ export const OnboardingProvider = ({ children }) => {
   };
 
   const markOnboardingComplete = (status) => {
-    setRequiresOnboarding(!status); // If complete, then requiresOnboarding is false
-    localStorage.setItem('onboardingComplete', status ? 'true' : 'false'); // Persist
+    setRequiresOnboarding(!status);
+    localStorage.setItem('onboardingComplete', status ? 'true' : 'false');
   };
 
   const resetOnboardingData = () => {

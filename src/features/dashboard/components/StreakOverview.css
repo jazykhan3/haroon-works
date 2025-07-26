@@ -1,0 +1,325 @@
+.streak-overview {
+  max-width: 100%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.streak-header {
+  margin-bottom: 24px;
+}
+
+.streak-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.streak-header p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.streak-carousel-container {
+  position: relative;
+}
+
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;background: #08bd80;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.carousel-nav-btn:hover {
+  background: #08bd80;
+}
+
+.carousel-prev {
+  left: -40px;
+}
+
+.carousel-next {
+  right: -40px;
+}
+
+.streak-carousel .ant-carousel .ant-carousel-content {
+  height: auto;
+}
+
+.streak-carousel .ant-carousel-dots {
+  position: static;
+  margin-top: 20px;
+}
+
+.streak-carousel .ant-carousel-dots-bottom {
+  bottom: auto;
+}
+
+.streak-carousel .ant-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.streak-carousel .ant-carousel-dot-active button {
+  background: #ff5b28;
+}
+
+.streak-slide {
+  padding: 20px;
+}
+
+.months-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  gap: 24px;
+}
+
+/* .streak-month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0; /* Allow flex items to shrink */
+  /* width: 100%;
+  height: 100%;
+  flex: 1;  */
+/* }  */
+
+.month-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0;
+  text-align: center;
+  font-family: 'Inter';
+  width: 100%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.streak-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 240px;
+  justify-items: center;
+  margin: 0 auto;
+  height: 345px;
+  min-height: 200px; /* Fixed minimum height for consistent alignment */
+  align-content: start;
+}
+
+.streak-day {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.streak-icon-container {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EDEFF1;
+  border-radius: 50%;
+}
+
+.streak-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.small-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .months-row {
+    gap: 20px;
+  }
+  
+  .streak-grid {
+    max-width: 220px;
+    gap: 14px;
+    justify-items: center;
+    margin: 0 auto;
+    min-height: 180px;
+    align-content: start;
+  }
+  
+  .month-title {
+    font-size: 15px;
+    margin-top: 14px;
+  }
+  
+  .streak-day {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .streak-icon-container {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .streak-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .small-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .streak-overview {
+    padding: 16px;
+  }
+  
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .carousel-prev {
+    left: -18px;
+  }
+  
+  .carousel-next {
+    right: -18px;
+  }
+  
+  .months-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  /* .streak-month {
+    flex: 0 0 calc(33.333% - 11px); /* 3 columns with gap */
+  /* }  */
+  
+  .streak-grid {
+    gap: 12px;
+    max-width: 200px;
+    justify-items: center;
+    margin: 0 auto;
+    min-height: 160px;
+    align-content: start;
+  }
+  
+  .streak-day {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .streak-icon-container {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .streak-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .small-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .month-title {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-nav-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .carousel-prev {
+    left: -16px;
+  }
+  
+  .carousel-next {
+    right: -16px;
+  }
+  
+  .months-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+/*   
+  .streak-month {
+    flex: 0 0 calc(50% - 6px); /* 2 columns with gap */
+  /* }  */
+  
+  .streak-grid {
+    gap: 10px;
+    max-width: 180px;
+    justify-items: center;
+    margin: 0 auto;
+    min-height: 140px;
+    align-content: start;
+  }
+  
+  .streak-day {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .streak-icon-container {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .streak-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .small-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .month-title {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}

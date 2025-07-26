@@ -13,8 +13,6 @@ const Step2OTP = ({ onValidate }) => {
   const handleOtpChange = (value) => {
     setOtpValues(value);
     updateOnboardingData({ otp: value });
-
-    // Validate only when 6 digits are filled
     onValidate(value.length === 6);
   };
 

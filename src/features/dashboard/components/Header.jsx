@@ -8,20 +8,20 @@ import { Link } from 'react-router-dom'
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { useAuth } from '../../auth/AuthContext'
 
-const { Title, Paragraph } = Typography;
+const { Paragraph } = Typography;
 const MainHeader = ({ collapsed, setCollapsed }) => {
     const { logout } = useAuth();
     const profilePopour = (
         <nav>
             <ul>
                 <li className="mb-4">
-                    <Link to="" className="flex items-center gap-2 text-sm text-black hover:text-[#f57900]">
+                    <Link to="/dashboard/profile" className="flex items-center gap-2 text-sm text-black hover:text-[#f57900]">
                         <UserOutlined />
                         My Profile
                     </Link>
                 </li>
                 <li className="mb-4">
-                    <Link to="" className="flex items-center gap-2 text-sm text-black hover:text-[#f57900]">
+                    <Link to="/dashboard/settings" className="flex items-center gap-2 text-sm text-black hover:text-[#f57900]">
                         <SettingOutlined />
                         Settings
                     </Link>

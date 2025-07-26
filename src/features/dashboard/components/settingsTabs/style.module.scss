@@ -1,0 +1,26 @@
+.setingsTabs {
+  // background-color: #f4f4f4;
+  :global(.ant-tabs-nav) {
+    border: 0px solid;
+    border-color: #fff;
+    :global(.ant-tabs-nav-list) {
+      :global(.ant-tabs-tab) {
+        padding: 16px 20px;
+        &:global(.ant-tabs-tab-active) {
+          background-image: linear-gradient(180deg, #ffffff 0%, #fdcfc1 100%);
+          :global(.ant-tabs-tab-btn) {
+            color: black;
+          }
+        }
+        :global(.ant-tabs-tab-btn) {
+          font-size: 12px;
+          font-weight: 500;
+          color: #666;
+        }
+      }
+    }
+    :global(.ant-tabs-ink-bar) {
+      background: #f6581c !important;
+    }
+  }
+}

@@ -1,9 +1,7 @@
-// src/features/onboarding/pages/OnboardingPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { Spin, Alert, Image } from 'antd'; // Import AntD components for loading/error
+import { Spin, Alert, Image } from 'antd'; 
 
-// Import individual step components
 import Step1PhoneNumber from '../components/Step1number';
 import Step2OTP from '../components/Step2OTP';
 import Step3success from '../components/Step3success';
@@ -15,24 +13,23 @@ import { useOnboardingProgress } from '../hooks/useOnboardingProgress';
 import { useOnboardingStatus } from '../onboardingState';
 import bgImage from '../../../assets/images/front-screen-bg.svg'
 import Logo from '../../../assets/icons/Logo.svg'
-
+import { useAuth } from '../../auth/AuthContext';
 const OnboardingPage = () => {
   const navigate = useNavigate();
   const { currentStep, goToNextStep, goToPreviousStep, isLastStep, resetOnboarding } = useOnboardingProgress();
   const { onboardingData, markOnboardingComplete } = useOnboardingStatus();
+    const { login } = useAuth();
+  
 
   const [isCurrentStepValid, setIsCurrentStepValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Function passed to each step to update its validity
   const handleStepValidation = (isValid) => {
     setIsCurrentStepValid(isValid);
   };
   console.log('onboardingData', onboardingData)
-  // Re-evaluate validity when step changes or data changes
   useEffect(() => {
-    // This is a simplified check. In a real app, you might have more complex validation.
     switch (currentStep) {
       case 1:
         setIsCurrentStepValid(/^\d{10,15}$/.test(onboardingData.phoneNumber));
@@ -60,19 +57,18 @@ const OnboardingPage = () => {
       setError("Please complete the current step before proceeding.");
       return;
     }
-    setError(null); // Clear any previous errors
+    setError(null);
 
     if (isLastStep) {
       setIsLoading(true);
       setError(null);
       try {
-        // Simulate API call to save onboarding data
         console.log("Submitting Onboarding Data:", onboardingData);
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network request
-
-        markOnboardingComplete(true); // Mark onboarding as complete in global state
-        resetOnboarding(); // Reset local step state
-        navigate('/dashboard'); // Redirect to dashboard
+        await new Promise(resolve => setTimeout(resolve, 1500)); 
+        login('1234567890')
+        markOnboardingComplete(true); 
+        resetOnboarding(); 
+        navigate('/dashboard'); 
       } catch (err) {
         setError("Failed to complete onboarding. Please try again.");
         console.error("Onboarding submission error:", err);
@@ -122,7 +118,7 @@ const OnboardingPage = () => {
             onBack={goToPreviousStep}
             onNext={handleNext}
             isLastStep={isLastStep}
-            isNextDisabled={!isCurrentStepValid || isLoading} // Disable Next button if invalid or loadinge 
+            isNextDisabled={!isCurrentStepValid || isLoading} 
           />
         </Spin>
       </div>

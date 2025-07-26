@@ -1,4 +1,3 @@
-// src/features/onboarding/components/Step5MonthDropdown.jsx
 import React from 'react';
 import { Select, Form, Typography } from 'antd';
 import { useOnboardingStatus } from '../onboardingState';
@@ -22,7 +21,7 @@ const Step5MonthDropdown = ({ onValidate }) => {
   };
 
   React.useEffect(() => {
-    // Validate on mount if already selected
+
     form.validateFields(['monthName'])
       .then(() => onValidate(true))
       .catch(() => onValidate(false));

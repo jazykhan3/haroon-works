@@ -1,12 +1,6 @@
-// src/layouts/DashboardLayout.jsx
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet} from 'react-router-dom';
 import React, { useState } from 'react';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Button, Layout, Menu, theme } from 'antd';
+import { Layout} from 'antd';
 import MainHeader from '../features/dashboard/components/Header';
 import SideBarMenu from '../features/dashboard/components/SideBarMenu';
 import style from './style.module.scss'
@@ -14,10 +8,8 @@ const { Sider, Content } = Layout;
 
 
 const DashboardLayout = () => {
+
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
     <div className={style.mainDashboardLayoutbox}>
@@ -28,9 +20,9 @@ const DashboardLayout = () => {
           <Sider className={style.mainDashboardLayoutbox} trigger={null} collapsible collapsed={collapsed}
             onCollapse={(value) => setCollapsed(value)}
             breakpoint="lg"
-            collapsedWidth={80} // Set to 0 for full hide on small screens
+            collapsedWidth={80}
             onBreakpoint={(broken) => {
-              setCollapsed(broken); // Auto collapse on breakpoint
+              setCollapsed(broken);
             }}
             className="!bg-transparent"
             width={235}

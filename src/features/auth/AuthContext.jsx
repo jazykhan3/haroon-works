@@ -1,19 +1,18 @@
-// src/features/auth/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Start as true
-
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
-    // Simulate checking for a token in localStorage
     const token = localStorage.getItem('authToken');
     if (token) {
       setIsAuthenticated(true);
     }
-    setIsLoading(false); // Once check is done, set to false
+    setIsLoading(false);
   }, []);
 
   const login = (token) => {
