@@ -6,7 +6,6 @@ import { ReactComponent as SmallIcon } from "../../../assets/svgs/Small.svg";
 import "./StreakOverview.css";
 import { useWindowSize } from "react-use";
 
-// Dummy data for streak calendar
 const generateStreakData = (monthsPerSlide = 6) => {
   const allMonths = [
     "January",
@@ -27,27 +26,21 @@ const generateStreakData = (monthsPerSlide = 6) => {
     const daysInMonth = new Date(2025, monthIndex + 1, 0).getDate();
     const days = [];
 
-    // Create more realistic streak patterns
     let streakCount = 0;
     let shouldHaveStreak = true;
 
     for (let day = 1; day <= daysInMonth; day++) {
-      // Create streak patterns - some consecutive days, some gaps
       if (streakCount > 0) {
         streakCount--;
         shouldHaveStreak = true;
       } else {
-        // Random chance to start a new streak or have a gap
         const random = Math.random();
         if (random > 14) {
-          // Start a new streak (3-7 days)
           streakCount = Math.floor(Math.random() * 5) + 2;
           shouldHaveStreak = true;
         } else if (random > 0.4) {
-          // Single day streak
           shouldHaveStreak = true;
         } else {
-          // Gap day
           shouldHaveStreak = false;
         }
       }
@@ -66,7 +59,6 @@ const generateStreakData = (monthsPerSlide = 6) => {
     };
   });
 
-  // Group months into slides based on monthsPerSlide
   const slides = [];
   for (let i = 0; i < monthsData.length; i += monthsPerSlide) {
     slides.push(monthsData.slice(i, i + monthsPerSlide));
@@ -88,8 +80,8 @@ function StreakOverview(props) {
     if (width <= 480) newMonths = 1;
     else if (width <= 768) newMonths = 3;
 
-    setMonthsPerSlide(newMonths); // ✅ Set in state
-    setStreakData(generateStreakData(newMonths)); // ✅ Generate with it
+    setMonthsPerSlide(newMonths);
+    setStreakData(generateStreakData(newMonths));
   }, [width]);
 
   const handlePrev = () => {

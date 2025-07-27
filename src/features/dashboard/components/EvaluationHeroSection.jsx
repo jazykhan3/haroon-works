@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const EvaluationHeroSection = () => {
   const user = "Rajdeep";
-  // Dynamic streak data - days with hasStreak: true will show the streak icon
   const streakData = [
     { day: "M", hasStreak: false },
     { day: "T", hasStreak: true },
@@ -16,7 +15,6 @@ const EvaluationHeroSection = () => {
     { day: "S", hasStreak: false },
   ];
 
-  // Count consecutive streaks for x3 display
   const getStreakMultiplier = () => {
     let consecutiveStreaks = 0;
     let maxConsecutive = 0;
@@ -33,7 +31,6 @@ const EvaluationHeroSection = () => {
     return maxConsecutive >= 3 ? "x3" : "";
   };
 
-  // 🔸 State for stats
   const [stats, setStats] = useState({
     testsAppeared: 17,
     averageScore: 80,
@@ -43,15 +40,14 @@ const EvaluationHeroSection = () => {
     <div className="mb-6 px-6">
       <div className="flex flex-col lg:flex-row justify-between gap-4">
         <div className="flex-1 text-left font-inter">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-2">
+          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
             Welcome back,
           </h1>
-          <h2 className="text-3xl font-semibold text-gray-700 mb-4">{user}</h2>
-          <p className="text-gray-600 text-lg mb-6">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">{user}</h2>
+          <p className="text-gray-600 text-sm mb-6">
             Practice for 30 mins or more every day to build your streak.
           </p>
 
-          {/* Dynamic Streak indicators */}
           <div className="flex items-center space-x-2 mb-4">
             {streakData.map((dayData, index) => (
               <div key={index} className="flex items-center space-x-2">
@@ -74,25 +70,22 @@ const EvaluationHeroSection = () => {
           </div>
         </div>
         <div className="flex items-center space-x-6 font-inter">
-          {/* Ranker Insight Card */}
           <div className="bg-white rounded-xl p-6 shadow-sm w-[500px] h-[180px] relative overflow-hidden">
-            {/* Content Container */}
             <div className="flex justify-between items-start h-full">
-              {/* Left Side - Text and Stats */}
               <div className="flex flex-col justify-between h-full">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 text-left">
+                <h3 className="text-lg font-bold text-gray-800 mb-6 text-left">
                   View Ranker Insight
                 </h3>
 
                 <div className="flex space-x-16">
                   <div>
-                    <div className="text-3xl font-bold text-gray-800 mb-1">
+                    <div className="text-[28px] font-bold text-gray-800 mb-1">
                       {stats.testsAppeared}
                     </div>
                     <div className="text-sm text-gray-500">Tests appeared</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-gray-800 mb-1">
+                    <div className="text-[28px] font-bold text-gray-800 mb-1">
                       {stats.averageScore}%
                     </div>
                     <div className="text-sm text-gray-500">Tests appeared</div>
@@ -100,7 +93,6 @@ const EvaluationHeroSection = () => {
                 </div>
               </div>
 
-              {/* Right Side - Button */}
               <div className="z-10">
                 <Button
                   type="ghost"
@@ -111,7 +103,6 @@ const EvaluationHeroSection = () => {
               </div>
             </div>
 
-            {/* Optional: If you have the background image */}
             <div className="absolute bottom-0 top-0 right-0 left-[50%]">
               <img
                 src={rankerInsightImage}

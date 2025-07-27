@@ -23,16 +23,6 @@ import VoiceRevisionPage from '../features/dashboard/pages/VoiceRevision';
 import SettingPage from '../features/dashboard/pages/Settings';
 import PricingProPage from '../features/dashboard/pages/PricingPro';
 import ReferrelPage from '../features/dashboard/pages/Referrel';
-import FlashCardPage from '../features/dashboard/pages/FlashCards';
-import FlashCardDetailPage from '../features/dashboard/components/flashcard/cardDetails';
-import FlashCardDetailOverViewPage from '../features/dashboard/components/flashcard/cardDetailsOverview';
-import RankersInsightsPage from '../features/dashboard/pages/RankersInsights';
-import RankersCardDetailPage from '../features/dashboard/components/insightDetails/cardDetails';
-import NewAttemptPage from '../features/dashboard/pages/NewAttempt';
-import HowAttemptPage from '../features/dashboard/components/newattempts/howToAttempt';
-import CorporateLawPage from '../features/dashboard/components/newattempts/corporateLaw';
-
-
 
 import PrioritySupportPage from '../features/dashboard/pages/PrioritySupportPage';
 import RequestHelpPage from '../features/dashboard/pages/RequestHelpPage';
@@ -45,6 +35,12 @@ import EvaluationsHistory from '../features/dashboard/pages/Evaluations';
 import EvaluationResults from '../features/dashboard/pages/EvaluationResults';
 
 import LoaderSpiner from './Spiner';
+import AskAI from '../features/dashboard/pages/AskAI';
+import AskAIRoutine from '../features/dashboard/pages/AskAIRoutine';
+import Practice from '../features/dashboard/pages/Practice';
+import Tests from '../features/dashboard/pages/Tests';
+import TestInsights from '../features/dashboard/pages/TestInsights';
+import TestResults from '../features/dashboard/pages/TestResults';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
@@ -102,14 +98,13 @@ const AppRouter = () => {
               <Route path="settings" element={<SettingPage />} />
               <Route path="pricings" element={<PricingProPage />} />
               <Route path="referrals" element={<ReferrelPage />} />
-              <Route path="flash-cards" element={<FlashCardPage />} />
-              <Route path="card-details" element={<FlashCardDetailPage />} />
-              <Route path="card-overview" element={<FlashCardDetailOverViewPage />} />
-              <Route path="rankers-insights" element={<RankersInsightsPage />} />
-              <Route path="rankers-details" element={<RankersCardDetailPage />} />
-              <Route path="new-attempt" element={<NewAttemptPage />} />
-              <Route path="how-attempt" element={<HowAttemptPage />} />
-              <Route path="corporate-law" element={<CorporateLawPage />} />
+
+              <Route path="ask-ai" element={<AskAI />} />
+              <Route path="ask-ai-routine" element={<AskAIRoutine />} />
+              <Route path="practice" element={<Practice />} />
+              <Route path="tests" element={<Tests/> }/>
+              <Route path="test-insights" element={<TestInsights />} />
+              <Route path="test-results" element={<TestResults />} />
 
               {/* <Route path="evaluation" element={<Evaluation />} /> */}
               <Route path='evaluation' element={<EvaluationsHistory />} />

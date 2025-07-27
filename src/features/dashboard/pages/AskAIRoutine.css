@@ -1,0 +1,91 @@
+.date-carousel .ant-carousel .ant-carousel-content {
+    height: auto;
+}
+
+.date-carousel .ant-carousel-dots {
+  position: static;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.date-carousel .ant-carousel-dots-bottom {
+  bottom: auto;
+}
+
+.date-carousel .ant-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+.date-carousel .ant-carousel-dot button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+}
+
+.date-carousel .ant-carousel-dot-active button {
+  background: #ff5b28;
+}
+
+.date-rectangle {
+  position: relative;
+  background-clip: padding-box;
+}
+
+.date-rectangle.active::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0.5rem;
+  z-index: -1;
+}
+
+@media (max-width: 1200px) {
+  .date-carousel .grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .date-carousel .grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+  }
+  
+  .date-carousel .w-14 {
+    width: 2.75rem;
+    height: 4rem;
+  }
+  
+  .date-carousel .text-lg {
+    font-size: 0.875rem;
+  }
+  
+  .date-carousel .text-xs {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-carousel .grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+  
+  .date-carousel .w-14 {
+    width: 2.5rem;
+    height: 3.5rem;
+  }
+  
+  .date-carousel .text-lg {
+    font-size: 0.75rem;
+  }
+  
+  .date-carousel .text-xs {
+    font-size: 0.5rem;
+  }
+}
