@@ -23,10 +23,12 @@ function EvaluationDialog({ visible, onClose }) {
       centered
     >
       <div className="p-6">
+        {/* Header */}
         <h2 className="text-2xl font-semibold text-gray-800 mb-8">
           Choose Appropriate
         </h2>
 
+        {/* Paper Selection */}
         <div className="mb-8">
           <h3 className="text-lg font-medium text-gray-700 mb-4">Paper</h3>
           <div className="flex gap-3">
@@ -46,6 +48,7 @@ function EvaluationDialog({ visible, onClose }) {
           </div>
         </div>
 
+        {/* Question Section */}
         <div className="mb-8">
           <h3 className="text-lg font-medium text-gray-700 mb-4">Question</h3>
           <textarea
@@ -56,6 +59,7 @@ function EvaluationDialog({ visible, onClose }) {
           />
         </div>
 
+        {/* Marks Selection */}
         <div className="mb-8">
           <h3 className="text-lg font-medium text-gray-700 mb-4">Marks</h3>
           <div className="flex gap-3">
@@ -75,12 +79,14 @@ function EvaluationDialog({ visible, onClose }) {
           </div>
         </div>
 
+        {/* Submit Button */}
         <Button
           type="ghost"
           size="large"
           block
           className="disabled:bg-transparent disabled:border-[#f57900] border-[#f57900] disabled:text-black-800 bg-orange-gradient hover:bg-orange-gradient-hover text-white text-base font-bold leading-4 py-4 px-6 w-fit h-auto" // Tailwind for styling
           onClick={() => {
+            // Handle evaluation logic here
             console.log({
               paper: selectedPaper,
               question,

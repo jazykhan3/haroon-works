@@ -5,6 +5,9 @@
   overflow-x: hidden;
   padding: 10px 20px;
   width: 100%;
+  .menuheading, .planCard{
+    display: none;
+  }
   :global(.ant-menu) {
     background-color: transparent;
     box-shadow: unset;
@@ -123,6 +126,7 @@
     }
   }
 }
+
 
 .customTablebilling {
   margin-top: 12px;

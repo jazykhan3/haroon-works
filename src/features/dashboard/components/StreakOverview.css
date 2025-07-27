@@ -34,8 +34,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  background: #08bd80;
+  z-index: 10;background: #08bd80;
   border: 1px solid #e5e7eb;
   border-radius: 50%;
   width: 40px;
@@ -101,7 +100,7 @@
   align-items: center;
   justify-content: space-between;
   min-width: 0; /* Allow flex items to shrink */
-/* width: 100%;
+  /* width: 100%;
   height: 100%;
   flex: 1;  */
 /* }  */
@@ -127,7 +126,7 @@
   justify-items: center;
   margin: 0 auto;
   height: 345px;
-  min-height: 200px;
+  min-height: 200px; /* Fixed minimum height for consistent alignment */
   align-content: start;
 }
 
@@ -162,12 +161,12 @@
   opacity: 0.6;
 }
 
-
+/* Responsive design */
 @media (max-width: 1024px) {
   .months-row {
     gap: 20px;
   }
-
+  
   .streak-grid {
     max-width: 220px;
     gap: 14px;
@@ -176,27 +175,27 @@
     min-height: 180px;
     align-content: start;
   }
-
+  
   .month-title {
     font-size: 15px;
     margin-top: 14px;
   }
-
+  
   .streak-day {
     width: 30px;
     height: 30px;
   }
-
+  
   .streak-icon-container {
     width: 30px;
     height: 30px;
   }
-
+  
   .streak-icon {
     width: 36px;
     height: 36px;
   }
-
+  
   .small-icon {
     width: 18px;
     height: 18px;
@@ -207,30 +206,30 @@
   .streak-overview {
     padding: 16px;
   }
-
+  
   .carousel-nav-btn {
     width: 36px;
     height: 36px;
   }
-
+  
   .carousel-prev {
     left: -18px;
   }
-
+  
   .carousel-next {
     right: -18px;
   }
-
+  
   .months-row {
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
   }
-
+  
   /* .streak-month {
     flex: 0 0 calc(33.333% - 11px); /* 3 columns with gap */
   /* }  */
-
+  
   .streak-grid {
     gap: 12px;
     max-width: 200px;
@@ -239,27 +238,27 @@
     min-height: 160px;
     align-content: start;
   }
-
+  
   .streak-day {
     width: 28px;
     height: 28px;
   }
-
+  
   .streak-icon-container {
     width: 28px;
     height: 28px;
   }
-
+  
   .streak-icon {
     width: 32px;
     height: 32px;
   }
-
+  
   .small-icon {
     width: 16px;
     height: 16px;
   }
-
+  
   .month-title {
     font-size: 14px;
     margin-top: 12px;
@@ -271,26 +270,25 @@
     width: 32px;
     height: 32px;
   }
-
+  
   .carousel-prev {
     left: -16px;
   }
-
+  
   .carousel-next {
     right: -16px;
   }
-
+  
   .months-row {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
   }
-
-  /*   
+/*   
   .streak-month {
     flex: 0 0 calc(50% - 6px); /* 2 columns with gap */
   /* }  */
-
+  
   .streak-grid {
     gap: 10px;
     max-width: 180px;
@@ -299,27 +297,27 @@
     min-height: 140px;
     align-content: start;
   }
-
+  
   .streak-day {
     width: 26px;
     height: 26px;
   }
-
+  
   .streak-icon-container {
     width: 26px;
     height: 26px;
   }
-
+  
   .streak-icon {
     width: 28px;
     height: 28px;
   }
-
+  
   .small-icon {
     width: 14px;
     height: 14px;
   }
-
+  
   .month-title {
     font-size: 12px;
     margin-top: 10px;

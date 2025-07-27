@@ -16,7 +16,7 @@ import RatingsbarsIcon from '../../../assets/icons/sidebar//Rating-bars.png'
 
 import style from './style.module.scss';
 const { Paragraph } = Typography;
-const SideBarMenu = () => {
+const SideBarMenu = ({collapsed}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const selectedKey = location.pathname;
@@ -48,7 +48,7 @@ const SideBarMenu = () => {
                     key: 'askai',
                     label: 'Ask AI',
                     icon: <img className={style.askai} src={askAiIcon} alt="icon"></img>,
-                    path: '/dashboard/ask-ai',
+                    path: 'dashboard/ask-ai',
                 },
                 {
                     key: 'evaluation',
@@ -116,7 +116,7 @@ const SideBarMenu = () => {
             {menuItems.map((group, idx) => (
                 <div key={idx} className="flex flex-col gap-2">
                     {group.section && (
-                        <Paragraph className={`text-xs font-medium text-[#BABDCC] uppercase text-left pt-5 ${style.menuheading}`}>
+                        <Paragraph className={`text-xs font-medium text-[#BABDCC] uppercase text-left pt-5 ${collapsed && style.menuheading}`}>
                             {group.section}
                         </Paragraph>
                     )}
@@ -145,7 +145,7 @@ const SideBarMenu = () => {
                     </Menu>
                 </div>
             ))}
-            <div className="plan-card p-3 rounded-lg shadow-sm bg-light-orange-yellow-gradient ">
+            <div className={`${collapsed && style.planCard} p-3 rounded-lg shadow-sm bg-light-orange-yellow-gradient`}>
                 <div className='flex items-center justify-between mb-9 gap-1'>
                     <Paragraph className="text-sm text-left font-medium !m-0 h-full bg-orange-gradient bg-clip-text text-transparent">
                         Free Plan
