@@ -17,17 +17,18 @@ const DashboardLayout = () => {
         <MainHeader collapsed={collapsed} setCollapsed={setCollapsed} />
         <Layout className='bg-[#F7F7F9] pt-6'>
 
-          <Sider className={`${style.mainDashboardLayoutboxsider} !bg-transparent`} trigger={null} collapsible collapsed={collapsed}
+          <Sider trigger={null} collapsible collapsed={collapsed}
             onCollapse={(value) => setCollapsed(value)}
             breakpoint="lg"
             collapsedWidth={80}
             onBreakpoint={(broken) => {
               setCollapsed(broken);
             }}
+            className="!bg-transparent"
             width={235}
           >
             <div className="demo-logo-vertical" />
-            <SideBarMenu collapsed={collapsed}/>
+            <SideBarMenu />
           </Sider>
           <Content className={style.mainContentcontainer}>
             <Outlet />

@@ -35,10 +35,10 @@ const EvaluationUpload = ({ onFileUpload }) => {
   return (
     <div className="font-inter px-8 py-12 rounded-xl">
       <div className="text-center mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <h2 className="text-xl font-bold text-gray-900 mb-2">
           Upload your handwritten answers
         </h2>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">
           for instant evaluation
         </h3>
         <p className="text-gray-600 text-sm">
@@ -46,13 +46,12 @@ const EvaluationUpload = ({ onFileUpload }) => {
         </p>
       </div>
 
-      {/* Upload Area */}
       <div className="flex justify-center mb-12 w-auto items-start bg-white">
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={openFileDialog}
-          className="max-h-[500px] overflow-hidden cursor-pointer" // control height
+          className="max-h-[500px] overflow-hidden cursor-pointer"
         >
           <div className="h-full flex items-center justify-center bg-white">
             <img
@@ -80,18 +79,16 @@ const EvaluationUpload = ({ onFileUpload }) => {
         )}
       </div>
 
-      {/* Evaluate Button */}
       <div className="text-center mb-16">
         <Button
           type="ghost"
-          className="disabled:bg-transparent disabled:border-[#f57900] border-[#f57900] disabled:text-black-800 bg-orange-gradient hover:bg-orange-gradient-hover text-white text-base font-bold leading-4 py-4 px-6 w-fit h-auto" // Tailwind for styling
+          className="disabled:bg-transparent disabled:border-[#f57900] border-[#f57900] disabled:text-black-800 bg-orange-gradient hover:bg-orange-gradient-hover text-white text-base font-bold leading-4 py-4 px-6 w-fit h-auto text-sm rounded-xl" // Tailwind for styling
           onClick={() => setDialogVisible(true)}
         >
           Evaluate your answers
         </Button>
       </div>
 
-      {/* Previous Evaluations Section */}
       <div className="previous-evaluations max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-xl font-bold text-gray-900">
@@ -103,7 +100,6 @@ const EvaluationUpload = ({ onFileUpload }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-inter">
-          {/* Previous evaluation cards */}
           {[1, 2, 3].map((item) => (
             <div
               key={item}

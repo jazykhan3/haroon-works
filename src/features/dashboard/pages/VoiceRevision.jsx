@@ -108,9 +108,20 @@ const VoiceRevision = () => {
       audioBlob: recordData.audioBlob,
       audioUrl: recordData.audioUrl
     };
-
+    
     setVoiceRecords(prevRecords => [newRecord, ...prevRecords]);
-
+    
+    // TODO: Here you would typically upload the audioBlob to your server
+    // Example:
+    // const formData = new FormData();
+    // formData.append('audio', recordData.audioBlob, `${recordData.name}.wav`);
+    // formData.append('paper', recordData.paper);
+    // formData.append('duration', recordData.duration);
+    // 
+    // fetch('/api/upload-voice-record', {
+    //   method: 'POST',
+    //   body: formData
+    // });
   };
 
   // Format time helper
@@ -133,100 +144,103 @@ const VoiceRevision = () => {
       <div className=" rounded-lg shadow-sm p-6 mb-6">
         <div className="flex items-center justify-between">
           {/* Title */}
-            <div className="flex items-center gap-[10px] flex-wrap">
-                <h1 className="text-xl font-medium text-black m-0 pe-[10px]">Rankers Insights</h1>
-
-                {/* Dropdown 1 - All Subject */}
-                <div className="relative">
+                    <div className="flex items-center space-x-4">
+            <h1 className="text-2xl font-bold text-gray-900">Rankers Insights</h1>
+            
+            {/* Dropdown 1 - All Subject */}
+            <div className="relative">
+              <button 
+                onClick={() => { closeAllDropdowns(); setShowDropdown1(!showDropdown1);}}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <span className="text-gray-700">{dropdown1Value}</span>
+                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {/* Dropdown 1 Menu */}
+              {showDropdown1 && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                  {subjectOptions.map((option, index) => (
                     <button
-                        onClick={() => { closeAllDropdowns(); setShowDropdown1(!showDropdown1); }}
-                        className="text-sm font-medium flex items-center gap-[6px] px-[10px] py-2 border border-[#f2f2f2] rounded-lg bg-white focus:outline-none focus:border-[#f57900] hover:border-[#f57900]"
+                      key={option}
+                      onClick={() => { setDropdown1Value(option); setShowDropdown1(false); }}
+                      className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                        index === 0 ? 'rounded-t-lg' : index === subjectOptions.length - 1 ? 'rounded-b-lg' : ''
+                      }`}
                     >
-                        <span className="text-black">{dropdown1Value}</span>
-                        <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
+                      {option}
                     </button>
-
-                    {/* Dropdown 1 Menu */}
-                    {showDropdown1 && (
-                        <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
-                            {subjectOptions.map((option, index) => (
-                                <button
-                                    key={option}
-                                    onClick={() => { setDropdown1Value(option); setShowDropdown1(false); }}
-                                    className={`block w-full text-left px-4 py-2 text-xs text-black hover:bg-gray-100 ${index === 0 ? 'rounded-t-lg' : index === subjectOptions.length - 1 ? 'rounded-b-lg' : ''
-                                        }`}
-                                >
-                                    {option}
-                                </button>
-                            ))}
-                        </div>
-                    )}
+                  ))}
                 </div>
-
-                {/* Dropdown 2 - Bookmarked */}
-                <div className="relative">
-                    <button
-                        onClick={() => { closeAllDropdowns(); setShowDropdown2(!showDropdown2); }}
-                        className="text-sm font-medium flex items-center gap-[6px] px-[10px] py-2 border border-[#f2f2f2] rounded-lg bg-white focus:outline-none focus:border-[#f57900] hover:border-[#f57900]"
-                    >
-                        <span className="text-black">{dropdown2Value}</span>
-                        <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                    </button>
-
-                    {/* Dropdown 2 Menu */}
-                    {showDropdown2 && (
-                        <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-[#f2f2f2] rounded-lg shadow-lg z-10">
-                            {bookmarkedOptions.map((option, index) => (
-                                <button
-                                    key={option}
-                                    onClick={() => { setShowDropdown2(false); setDropdown2Value(option); }}
-                                    className={`block w-full text-left px-4 py-2 text-xs text-black hover:bg-gray-100 ${index === 0 ? 'rounded-t-lg' : index === bookmarkedOptions.length - 1 ? 'rounded-b-lg' : ''
-                                        }`}
-                                >
-                                    {option}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                {/* Dropdown 3 - Marked */}
-                <div className="relative">
-                    <button
-                        onClick={() => { closeAllDropdowns(); setShowDropdown3(!showDropdown3); }}
-                        className="text-sm font-medium flex items-center gap-[6px] px-[10px] py-2 border border-[#f2f2f2] rounded-lg bg-white focus:outline-none focus:border-[#f57900] hover:border-[#f57900]"
-                    >
-                        <span className="text-gray-700">{dropdown3Value}</span>
-                        <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                    </button>
-
-                    {/* Dropdown 3 Menu */}
-                    {showDropdown3 && (
-                        <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
-                            {markedOptions.map((option, index) => (
-                                <button
-                                    key={option}
-                                    onClick={() => { setDropdown3Value(option); setShowDropdown3(false); }}
-                                    className={`block w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 ${index === 0 ? 'rounded-t-lg' : index === markedOptions.length - 1 ? 'rounded-b-lg' : ''
-                                        }`}
-                                >
-                                    {option}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
+              )}
             </div>
+
+            {/* Dropdown 2 - Bookmarked */}
+            <div className="relative">
+              <button 
+                onClick={() => {closeAllDropdowns(); setShowDropdown2(!showDropdown2); }}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <span className="text-gray-700">{dropdown2Value}</span>
+                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {/* Dropdown 2 Menu */}
+              {showDropdown2 && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                  {bookmarkedOptions.map((option, index) => (
+                    <button
+                      key={option}
+                      onClick={() => { setShowDropdown2(false); setDropdown2Value(option); }}
+                      className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                        index === 0 ? 'rounded-t-lg' : index === bookmarkedOptions.length - 1 ? 'rounded-b-lg' : ''
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Dropdown 3 - Marked */}
+            <div className="relative">
+              <button 
+                onClick={() => { closeAllDropdowns(); setShowDropdown3(!showDropdown3);}}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <span className="text-gray-700">{dropdown3Value}</span>
+                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {/* Dropdown 3 Menu */}
+              {showDropdown3 && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                  {markedOptions.map((option, index) => (
+                    <button
+                      key={option}
+                      onClick={() => { setDropdown3Value(option); setShowDropdown3(false); }}
+                      className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                        index === 0 ? 'rounded-t-lg' : index === markedOptions.length - 1 ? 'rounded-b-lg' : ''
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* Filter Dropdowns */}
           <div className="">
-
+           
 
             {/* Add Voice Records Button */}
             <button

@@ -6,7 +6,6 @@ import suggestion from "../../../assets/svgs/suggestions.svg";
 import { Button } from "antd";
 
 const EvaluationDetailsView = ({ evaluation, onBack }) => {
-  // State for evaluation data
   const [evaluationData, setEvaluationData] = useState({
     score: {
       current: 10,
@@ -40,7 +39,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
 
   return (
     <div className="bg-white rounded-xl mb-6 p-6 font-inter">
-      {/* Back Button */}
       <div className="mb-6">
         <button
           onClick={onBack}
@@ -50,7 +48,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
         </button>
       </div>
 
-      {/* Uploaded Answer Section */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4 bg-[#f7f7f9] p-3 rounded-lg">
           <img src={fileUploadIcon} alt="document" className="w-6 h-6" />
@@ -59,7 +56,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           </span>
         </div>
 
-        {/* Marks Display */}
         <div className="mb-4 text-left">
           <span className="text-lg font-semibold text-gray-500">Marks</span>
           <div className="flex gap-2 mt-1">
@@ -78,21 +74,18 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           </div>
         </div>
 
-        {/* Question */}
         <div className="mb-4 text-left">
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Question</h3>
 
           <p className="text-gray-700 text-lg">{evaluationData.question}</p>
         </div>
 
-        {/* Answer */}
         <div className="mb-4 text-left">
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Answer</h3>
           <p className="text-gray-700 text-lg">{evaluationData.answer}</p>
         </div>
       </div>
 
-      {/* Your Answer Evaluation Section */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4 bg-[#f7f7f9] p-3 rounded-lg">
           <img src={fileWrite} alt="document" className="w-6 h-6" />
@@ -101,7 +94,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           </span>
         </div>
 
-        {/* Demand of the Question */}
         <div className="mb-6 text-left">
           <span className="text-xl font-semibold text-gray-800 leading-none">
             Demand of the Question
@@ -115,11 +107,8 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           </div>
         </div>
 
-        {/* Score Display with Custom Gradient */}
         <div className="relative overflow-hidden rounded-xs mb-6">
-          {/* Inner Content */}
           <div className="relative bg-white">
-            {/* Gradient Background for Score Area */}
             <div className="bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 rounded-xl p-6 mb-4">
               <div className="flex items-center gap-[40%]">
                 <div className="text-center">
@@ -150,22 +139,11 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
                   </div>
                 </div>
               </div>
-
-              {/* Progress Bar */}
-              {/* <div className="mt-4">
-                <div className="w-full bg-gray-200 rounded-full h-3">
-                  <div 
-                    className="h-3 rounded-full bg-gradient-to-r from-orange-400 to-red-400 transition-all duration-500 ease-out"
-                    style={{ width: `${evaluationData.score.accuracy}%` }}
-                  ></div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
       </div>
 
-      {/* What You Wrote Section */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4 bg-[#f7f7f9] p-3 rounded-lg">
           <img src={fileWrite} alt="document" className="w-6 h-6" />
@@ -174,7 +152,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           </span>
         </div>
 
-        {/* What you wrote content */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4 ">
             <img src={writing} alt="document" className="w-6 h-6" />
@@ -185,7 +162,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           <p className="text-gray-700 text-lg">{evaluationData.userResponse}</p>
         </div>
 
-        {/* Analysis */}
         <div className="mb-8 text-left">
           <div className="flex items-center gap-3 mb-4 ">
             <span className="text-xl font-semibold text-gray-800 leading-none">
@@ -203,7 +179,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           ))}
         </div>
 
-        {/* Suggestions to improve */}
         <div className="mb-8 text-left">
           <div className="flex items-center gap-3 mb-4 ">
             <img src={suggestion} alt="document" className="w-6 h-6" />
@@ -221,7 +196,6 @@ const EvaluationDetailsView = ({ evaluation, onBack }) => {
           ))}
         </div>
 
-        {/* Evaluate Button */}
         <div className="flex justify-end mt-6">
           <Button
             type="ghost"
