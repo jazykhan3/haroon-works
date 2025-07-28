@@ -32,7 +32,7 @@ const OnboardingPage = () => {
   useEffect(() => {
     switch (currentStep) {
       case 1:
-        setIsCurrentStepValid(/^\d{10,15}$/.test(onboardingData.phoneNumber));
+       setIsCurrentStepValid(/^\+?\d{10,15}$/.test(onboardingData.phoneNumber));
         break;
       case 2:
         setIsCurrentStepValid(onboardingData.otp);

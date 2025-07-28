@@ -8,6 +8,9 @@ export const useOnboardingProgress = (totalSteps = 5) => {
     };
 
     const goToPreviousStep = () => {
+        if (currentStep === 1) {
+          window.location.pathname = "/home";
+        }
         setCurrentStep(prevStep => Math.max(prevStep - 1, 1));
     };
 

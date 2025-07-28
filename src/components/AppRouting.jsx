@@ -49,6 +49,7 @@ import RankersCardDetailPage from '../features/dashboard/components/insightDetai
 import NewAttemptPage from '../features/dashboard/pages/NewAttempt';
 import HowAttemptPage from '../features/dashboard/components/newattempts/howToAttempt';
 import CorporateLawPage from '../features/dashboard/components/newattempts/corporateLaw';
+import LandingPage from '../features/landingPage/LandingPage';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
@@ -86,7 +87,8 @@ const AppRouter = () => {
       <AuthProvider>
         <OnboardingProvider>
           <Routes>
-            <Route path="/" element={<Navigate to="/onboarding" replace />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<LandingPage />} />
             <Route
               path="/onboarding"
               element={
@@ -98,9 +100,19 @@ const AppRouter = () => {
 
             {/* PROTECTED DASHBOARD ROUTES */}
             {/* All routes under /dashboard require authentication and completed onboarding */}
-            <Route path="/dashboard/*" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+            <Route
+              path="/dashboard/*"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<OverviewPage />} />
-              <Route path="progress-overview" element={<ProgressOverviewPage />} />
+              <Route
+                path="progress-overview"
+                element={<ProgressOverviewPage />}
+              />
               <Route path="leader-board" element={<LeaderBoardPage />} />
               <Route path="voice-revision" element={<VoiceRevisionPage />} />
               <Route path="settings" element={<SettingPage />} />
@@ -110,24 +122,39 @@ const AppRouter = () => {
               <Route path="ask-ai" element={<AskAI />} />
               <Route path="ask-ai-routine" element={<AskAIRoutine />} />
               <Route path="practice" element={<Practice />} />
-              <Route path="tests" element={<Tests/> }/>
+              <Route path="tests" element={<Tests />} />
               <Route path="test-insights" element={<TestInsights />} />
               <Route path="test-results" element={<TestResults />} />
               <Route path="flash-cards" element={<FlashCardPage />} />
               <Route path="card-details" element={<FlashCardDetailPage />} />
-              <Route path="card-overview" element={<FlashCardDetailOverViewPage />} />
-              <Route path="rankers-insights" element={<RankersInsightsPage />} />
-              <Route path="rankers-details" element={<RankersCardDetailPage />} />
+              <Route
+                path="card-overview"
+                element={<FlashCardDetailOverViewPage />}
+              />
+              <Route
+                path="rankers-insights"
+                element={<RankersInsightsPage />}
+              />
+              <Route
+                path="rankers-details"
+                element={<RankersCardDetailPage />}
+              />
               <Route path="new-attempt" element={<NewAttemptPage />} />
               <Route path="how-attempt" element={<HowAttemptPage />} />
               <Route path="corporate-law" element={<CorporateLawPage />} />
 
               {/* <Route path="evaluation" element={<Evaluation />} /> */}
-              <Route path='evaluation' element={<EvaluationsHistory />} />
-              <Route path="evaluation-results" element={<EvaluationResults />} />
+              <Route path="evaluation" element={<EvaluationsHistory />} />
+              <Route
+                path="evaluation-results"
+                element={<EvaluationResults />}
+              />
               <Route path="profile" element={<UserProfile />} />
 
-              <Route path="priority-support" element={<PrioritySupportPage />} />
+              <Route
+                path="priority-support"
+                element={<PrioritySupportPage />}
+              />
               <Route path="request-help" element={<RequestHelpPage />} />
               <Route path="voice-mode" element={<TalkToOriznPage />} />
             </Route>
