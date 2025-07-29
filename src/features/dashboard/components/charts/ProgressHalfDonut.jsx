@@ -37,35 +37,57 @@ const ProgressHalfDonut = ({ progress = 48, title = "Progress in Accounting" }) 
       threshold: 25
     }
   ];
-
-  const option = {
-    tooltip: {
-      trigger: 'item'
-    },
-    series: [
-      {
-        padAngle: 1,
-        itemStyle: {
-          borderRadius: 50
-        },
-        labelLine: { show: false },
-        label: { show: false, position: 'center' },
-        name: 'Access From',
-        type: 'pie',
-        radius: ['84%', '100%'],
-        center: ['50%', '70%'],
-        startAngle: 180,
-        endAngle: 360,
-        data: [
-          { value: 25, itemStyle: { color: segments[0].gradient } },
-          { value: 25, itemStyle: { color: segments[1].gradient } },
-          { value: 25, itemStyle: { color: segments[2].gradient } },
-          { value: 25, itemStyle: { color: segments[3].gradient } }
-        ]
-      }
-    ],
+const option = {
+  tooltip: {
+    trigger: 'item'
+  },
   
-  };
+  series: [
+    {
+      padAngle: 1,
+      itemStyle: {
+        borderRadius: 50
+      },
+      labelLine: { show: false },
+      label: { show: false },
+      name: 'Progress',
+      type: 'pie',
+      radius: ['84%', '100%'],
+      center: ['50%', '70%'],
+      startAngle: 180,
+      endAngle: 360,
+      data: [
+        { value: 25, itemStyle: { color: segments[0].gradient } },
+        { value: 25, itemStyle: { color: segments[1].gradient } },
+        { value: 25, itemStyle: { color: segments[2].gradient } },
+        { value: 25, itemStyle: { color: segments[3].gradient } }
+      ]
+    },
+    {
+      type: 'pie',
+      radius: ['0%', '60%'],
+      center: ['50%', '65%'],
+      startAngle: 180,
+      endAngle: 360,
+      label: {
+        position: 'center',
+        formatter: `{a|${progress}%}`,
+        rich: {
+          a: {
+            fontSize: 36,
+            fontWeight: 'bold',
+            color: '#333'
+          }
+        }
+      },
+      data: [
+        { value: 1, name: 'Center Text', itemStyle: { color: 'transparent' }, labelLine: { show: false } }
+      ],
+      tooltip: { show: false }
+    }
+  ]
+};
+
 
   return (
     <div className="w-full h-full flex flex-col items-center">

@@ -1,9 +1,6 @@
-import  { useRef } from "react";
+import { useRef } from "react";
 import { Carousel, Avatar } from "antd";
-import {
-  DoubleLeftOutlined,
-  DoubleRightOutlined,
-} from "@ant-design/icons";
+import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 function TestimonialsSection(props) {
   const carouselRef = useRef(null);
@@ -43,40 +40,41 @@ function TestimonialsSection(props) {
     carouselRef.current?.next();
   };
 
-  const TestimonialCard = ({ testimonial }) => (
-    <div className="px-2 py-2 relative flex justify-center items-center">
- 
-      <div className="absolute bg-[#fffbfa] border-1 opacity-60 rounded-2xl shadow border border-orange-200 w-[95%] h-full top-0 left-10 right-20 bottom-0 mx-auto max-w-4xl z-0" />
+const TestimonialCard = ({ testimonial }) => (
+  <div className="relative flex justify-center items-center px-2 py-4">
+
+    <div className="absolute inset-0 flex justify-center items-center z-0">
+      <div className="w-[85%] md:w-[85%] h-[80%] bg-[#fffbfa] opacity-60 border border-[#CC562A26] rounded-3xl"></div>
+    </div>
 
 
-      <div className="relative z-10 px-4 md:px-8 font-labil-grotesk">
-        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mx-auto max-w-4xl border border-[#ff7f1b] border-2">
-          <div className="text-center mb-6">
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-              "{testimonial.content}"
-            </p>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-              "{testimonial.content}"
-            </p>
-          </div>
+    <div className="relative z-10 bg-white rounded-2xl p-6 md:p-8 mx-auto max-w-4xl border-2 border-[#CC562A26] font-labil-grotesk h-full">
+      <div className="text-center mb-6">
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+          "{testimonial.content}"
+        </p>
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+          "{testimonial.content}"
+        </p>
+      </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-            <Avatar
-              size={60}
-              src={testimonial.avatar}
-              className="border-2 border-orange-200 rounded-lg"
-            />
-            <div className="text-center sm:text-left">
-              <h4 className="font-semibold text-gray-900 text-lg">
-                {testimonial.name}
-              </h4>
-              <p className="text-gray-600 text-sm -mt-2">{testimonial.title}</p>
-            </div>
-          </div>
+      <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
+        <Avatar
+          size={60}
+          src={testimonial.avatar}
+          className="border-2 border-orange-200 rounded-lg"
+        />
+        <div className="text-center sm:text-left">
+          <h4 className="font-semibold text-gray-900 text-lg">
+            {testimonial.name}
+          </h4>
+          <p className="text-gray-600 text-sm -mt-2">{testimonial.title}</p>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+
 
   return (
     <section className="py-16 md:py-20 bg-[#fafaf7]">
