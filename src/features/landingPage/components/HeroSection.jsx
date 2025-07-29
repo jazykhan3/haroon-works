@@ -9,7 +9,7 @@ function HeroSection() {
       className="min-h-screen flex items-center font-labil-grotesk bg-cover bg-center no-repeat w-full"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="mx-auto py-10 px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center">
           <div className="inline-flex items-center bg-white rounded-full px-4 py-2 mb-8 shadow-sm">
             <span className="text-[#F6581C] text-sm font-medium">
