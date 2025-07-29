@@ -1,108 +1,150 @@
-import React, { useRef } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
+import React, { useRef } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
 
-const ProgressHalfDonut = ({ progress = 48, title = "Progress in Accounting" }) => {
+const ProgressHalfDonut = ({
+  progress = 48,
+  title = "Progress in Accounting",
+}) => {
   const chartRef = useRef();
   const lastUpdate = "21 Apr";
 
   const segments = [
     {
       gradient: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#FF9792' },
-        { offset: 1, color: '#F0352C' }
+        { offset: 0, color: "#FF9792" },
+        { offset: 1, color: "#F0352C" },
       ]),
-      threshold: 25
+      threshold: 40,
     },
     {
       gradient: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
-        { offset: 0.34, color: '#F6CF7D' },
-        { offset: 0.87, color: '#FFE9BC' }
+        { offset: 0.34, color: "#F6CF7D" },
+        { offset: 0.87, color: "#FFE9BC" },
       ]),
-      threshold: 25
+      threshold: 20,
     },
     {
       gradient: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
-        { offset: 0.07, color: '#FF3F05' },
-        { offset: 0.5, color: '#FF8205' },
-        { offset: 0.96, color: '#FFEBD9' }
+        { offset: 0.07, color: "#FF3F05" },
+        { offset: 0.5, color: "#FF8205" },
+        { offset: 0.96, color: "#FFEBD9" },
       ]),
-      threshold: 25
+      threshold: 20,
     },
     {
       gradient: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#08BD80' },
-        { offset: 1, color: '#BDFFC5' }
+        { offset: 0, color: "#08BD80" },
+        { offset: 1, color: "#BDFFC5" },
       ]),
-      threshold: 25
-    }
-  ];
-const option = {
-  tooltip: {
-    trigger: 'item'
-  },
-  
-  series: [
-    {
-      padAngle: 1,
-      itemStyle: {
-        borderRadius: 50
-      },
-      labelLine: { show: false },
-      label: { show: false },
-      name: 'Progress',
-      type: 'pie',
-      radius: ['84%', '100%'],
-      center: ['50%', '70%'],
-      startAngle: 180,
-      endAngle: 360,
-      data: [
-        { value: 25, itemStyle: { color: segments[0].gradient } },
-        { value: 25, itemStyle: { color: segments[1].gradient } },
-        { value: 25, itemStyle: { color: segments[2].gradient } },
-        { value: 25, itemStyle: { color: segments[3].gradient } }
-      ]
+      threshold: 20,
     },
-    {
-      type: 'pie',
-      radius: ['0%', '60%'],
-      center: ['50%', '65%'],
-      startAngle: 180,
-      endAngle: 360,
-      label: {
-        position: 'center',
-        formatter: `{a|${progress}%}`,
-        rich: {
-          a: {
-            fontSize: 36,
-            fontWeight: 'bold',
-            color: '#333'
-          }
-        }
-      },
-      data: [
-        { value: 1, name: 'Center Text', itemStyle: { color: 'transparent' }, labelLine: { show: false } }
-      ],
-      tooltip: { show: false }
-    }
-  ]
-};
+  ];
 
+  const option = {
+    series: [
+      {
+        type: "pie",
+        radius: ["88%", "100%"],
+        center: ["50%", "70%"],
+        startAngle: 180,
+        endAngle: 360,
+        padAngle: 1,
+        labelLine: { show: false },
+        label: { show: false },
+        silent: true,
+        itemStyle: {
+          borderRadius: 50,
+        },
+        data: segments.map((seg) => ({
+          value: seg.threshold,
+          itemStyle: { color: seg.gradient },
+        })),
+      },
+
+      {
+        type: "gauge",
+        startAngle: 180,
+        endAngle: 360,
+        radius: "100%",
+        center: ["50%", "70%"],
+        splitNumber: 20,
+        axisLine: { show: false },
+        pointer: { show: false },
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        splitLine: {
+          distance: 20,
+          length: 6,
+          lineStyle: {
+            color: "#D9D9D9",
+            width: 2,
+          },
+        },
+        detail: { show: false },
+      },
+
+      {
+        type: "scatter",
+        coordinateSystem: "polar",
+        polarIndex: 0,
+        symbolSize: 25,
+        symbolOffset: [0, -4], 
+        itemStyle: {
+          color: "#fff",
+          borderColor: "#F0352C",
+          borderWidth: 8,
+        },
+        data: [[315, 60]],
+      },
+      {
+        type: "gauge",
+        startAngle: 180,
+        endAngle: 360,
+        radius: "100%",
+        center: ["50%", "70%"],
+        pointer: { show: false },
+        progress: { show: false },
+        axisLine: { show: false },
+        axisTick: { show: false },
+        splitLine: { show: false },
+        axisLabel: { show: false },
+        detail: {
+          valueAnimation: true,
+          fontSize: 42,
+          fontWeight: "bold",
+          offsetCenter: [0, "-30%"],
+          formatter: () => `${progress}%`,
+        },
+        data: [{ value: progress }],
+      },
+    ],
+    polar: {
+      radius: ["84%", "100%"],
+      center: ["50%", "70%"],
+    },
+    angleAxis: {
+      max: 360,
+      startAngle: 180,
+      show: false,
+    },
+    radiusAxis: { type: "category", show: false },
+  };
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="w-full" style={{ height: '220px' }}>
+      <div className="w-full" style={{ height: "220px" }}>
         <ReactECharts
           ref={chartRef}
           option={option}
-          style={{ height: '250px', width: '100%' }}
-          opts={{ renderer: 'canvas' }}
+          style={{ height: "320px", width: "100%" }}
+          opts={{ renderer: "canvas" }}
         />
       </div>
-      <div className="text-center mt-2">
-        <h2 className='text-base font-semibold text-black'>{title}</h2>
-        <p className='text-xs text-gray-600 mb-2'>Last Check on {lastUpdate}</p>
-        <button className='bg-[#EAEAEA] hover:bg-[#d5d5d5] text-[#7A7A7A] rounded-lg px-[12px] py-[6px] text-sm font-medium transition'>
+      <div className="text-center">
+        <h2 className="text-base font-semibold text-black">{title}</h2>
+        <p className="text-xs text-gray-600 mb-2">Last Check on {lastUpdate}</p>
+        <button className="bg-[#EAEAEA] hover:bg-[#d5d5d5] text-[#7A7A7A] rounded-lg px-[12px] py-[6px] text-sm font-medium transition">
           Update
         </button>
       </div>
