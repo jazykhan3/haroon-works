@@ -132,23 +132,31 @@ const ProgressHalfDonut = ({
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
-      <div className="w-full" style={{ height: "220px" }}>
-        <ReactECharts
-          ref={chartRef}
-          option={option}
-          style={{ height: "320px", width: "100%" }}
-          opts={{ renderer: "canvas" }}
-        />
+    <>
+      <div className="text-left">
+        <h3 className="text-xs font-medium text-[#444444]">YOUR PROGRESS</h3>
       </div>
-      <div className="text-center">
-        <h2 className="text-base font-semibold text-black">{title}</h2>
-        <p className="text-xs text-gray-600 mb-2">Last Check on {lastUpdate}</p>
-        <button className="bg-[#EAEAEA] hover:bg-[#d5d5d5] text-[#7A7A7A] rounded-lg px-[12px] py-[6px] text-sm font-medium transition">
-          Update
-        </button>
+
+      <div className="w-full h-full flex flex-col items-center">
+        <div className="w-full" style={{ height: "220px" }}>
+          <ReactECharts
+            ref={chartRef}
+            option={option}
+            style={{ height: "320px", width: "100%" }}
+            opts={{ renderer: "canvas" }}
+          />
+        </div>
+        <div className="text-center">
+          <h2 className="text-base font-semibold text-black">{title}</h2>
+          <p className="text-xs text-gray-600 mb-2">
+            Last Check on {lastUpdate}
+          </p>
+          <button className="bg-[#EAEAEA] hover:bg-[#d5d5d5] text-[#7A7A7A] rounded-lg px-[12px] py-[6px] text-sm font-medium transition">
+            Update
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
